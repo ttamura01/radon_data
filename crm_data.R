@@ -2,7 +2,7 @@ library(tidyverse)
 library(glue)
 library(ggtext)
 
-setwd("/Users/takayukitamura/Documents/R_Computing/rad_pa")
+setwd("/Users/takayukitamura/Documents/R_Computing/radon_data")
 
 crm_data <- read_csv("crm_2025-09-10.csv")
 
