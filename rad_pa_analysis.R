@@ -1,7 +1,7 @@
 library(tidyverse)
 library(dplyr)
 library(ggtext)
-setwd("/Users/takayukitamura/Documents/R_Computing/rad_pa")
+setwd("/Users/takayukitamura/Documents/R_Computing/radon_data")
 # to create rad_pa and rad_pgh from radon open-data: https://data.pa.gov/Energy-and-the-Environment/Radon-Test-Results-September-1986-Current-Annual-C/vkjb-sx3k/about_data
 
 
