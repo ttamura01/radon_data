@@ -1,4 +1,4 @@
-setwd("/Users/takayukitamura/Documents/R_Computing/rad_pa")
+setwd("/Users/takayukitamura/Documents/R_Computing/radon_data")
 
 library(tidyverse)
 library(dplyr)
@@ -31,13 +31,13 @@ rad_pgh <- read.csv("data/rad_pgh.csv")
 
 # to create stats 
 
-pgh_stats <- rad_pgh %>% 
-  summarise(minimum = min(`Measure.Value`, round(2)),
-            median = median(`Measure.Value`, round(2)),
-            mean = mean(`Measure.Value`),
-            maximum = max(`Measure.Value`, round(2)),
-            sd = sd(`Measure.Value`, round(2)),
-            n = length(`Measure.Value`))
+pgh_stats <-rad_pgh %>% 
+  summarise(minimum = min(`Measure Value`, round(2)),
+            median = median(`Measure Value`, round(2)),
+            mean = mean(`Measure Value`, round(2)),
+            maximum = max(`Measure Value`, round(2)),
+            sd = sd(`Measure Value`, round(2)),
+            n = length(`Measure Value`))
 
 pgh_stats
 
@@ -45,43 +45,43 @@ pgh_stats
 # PGH
 
 rad_pgh_2.0 <- rad_pgh %>% 
-  filter(`Measure.Value` < 2.0)
-length(rad_pgh_2.0$`Measure.Value`)
-(length(rad_pgh_2.0$`Measure.Value`)/550399)*100
+  filter(`Measure Value` < 2.0)
+length(rad_pgh_2.0$`Measure Value`)
+(length(rad_pgh_2.0$`Measure Value`)/550399)*100
 
 rad_pgh_4.0 <- rad_pgh %>% 
-  filter(`Measure.Value` >= 2.0 & `Measure.Value` < 4.0)
-length(rad_pgh_4.0$`Measure.Value`)
-(length(rad_pgh_4.0$`Measure.Value`)/550399)*100
+  filter(`Measure Value` >= 2.0 & `Measure Value` < 4.0)
+length(rad_pgh_4.0$`Measure Value`)
+(length(rad_pgh_4.0$`Measure Value`)/550399)*100
 
 rad_pgh_10.0 <- rad_pgh %>% 
-  filter(`Measure.Value` >= 4.0 & `Measure.Value` < 10.0)
-length(rad_pgh_10.0$`Measure.Value`)
-(length(rad_pgh_10.0$`Measure.Value`)/550399)*100
+  filter(`Measure Value` >= 4.0 & `Measure Value` < 10.0)
+length(rad_pgh_10.0$`Measure Value`)
+(length(rad_pgh_10.0$`Measure Value`)/550399)*100
 
 rad_pgh_20.0 <- rad_pgh %>% 
-  filter(`Measure.Value` >= 10.0 & `Measure.Value` < 20.0)
-length(rad_pgh_20.0$`Measure.Value`)
-(length(rad_pgh_20.0$`Measure.Value`)/550399)*100
+  filter(`Measure Value` >= 10.0 & `Measure Value` < 20.0)
+length(rad_pgh_20.0$`Measure Value`)
+(length(rad_pgh_20.0$`Measure Value`)/550399)*100
 
 rad_pgh_50.0 <- rad_pgh %>% 
-  filter(`Measure.Value` >= 20 & `Measure.Value` < 50.0)
-length(rad_pgh_50.0$`Measure.Value`)
-(length(rad_pgh_50.0$`Measure.Value`)/550399)*100
+  filter(`Measure Value` >= 20 & `Measure Value` < 50.0)
+length(rad_pgh_50.0$`Measure Value`)
+(length(rad_pgh_50.0$`Measure Value`)/550399)*100
 
 rad_pgh_100.0 <- rad_pgh %>% 
-  filter(`Measure.Value` >= 100.0)
-length(rad_pgh_100.0$`Measure.Value`)
-(length(rad_pgh_100.0$`Measure.Value`)/550399)*100
+  filter(`Measure Value` >= 100.0)
+length(rad_pgh_100.0$`Measure Value`)
+(length(rad_pgh_100.0$`Measure Value`)/550399)*100
 
-rad_pgh %>% arrange(-`Measure.Value`)
+rad_pgh %>% arrange(-`Measure Value`)
 
 
 ## histogram 
 
 # PGH
 
-ggplot(rad_pgh, aes(x = `Measure.Value`)) +
+ggplot(rad_pgh, aes(x = `Measure Value`)) +
   geom_histogram(fill = 'red') +
   scale_x_log10()+
   labs(x = 'Log10: Measured Radon (pCi/L)', x = 'Counts', 
@@ -92,9 +92,9 @@ ggplot(rad_pgh, aes(x = `Measure.Value`)) +
 
 # PGH
 
-ggplot(rad_pgh, aes(x = `Measure.Value`)) +
+ggplot(rad_pgh, aes(x = `Measure Value`)) +
   geom_histogram(bins = 15, fill = 'red', alpha = 0.8) +
-  geom_vline(aes(xintercept=mean(`Measure.Value`, na.rm=TRUE)), linetype="dashed", size=1)+
+  geom_vline(aes(xintercept=mean(`Measure Value`, na.rm=TRUE)), linetype="dashed", size=1)+
   scale_x_log10(limits = c(0.5, 150))+
   labs(x = 'Log10: Measured Radon (pCi/L)', x = 'Counts', 
        title = 'Measured Radon in Greater Pittsburgh') +
@@ -103,9 +103,9 @@ ggplot(rad_pgh, aes(x = `Measure.Value`)) +
 ## adding annotate 
 # PGH
 
-ggplot(rad_pgh, aes(x = `Measure.Value`)) +
+ggplot(rad_pgh, aes(x = `Measure Value`)) +
   geom_histogram(bins = 15, fill = 'red', alpha = 0.8) +
-  geom_vline(aes(xintercept=mean(`Measure.Value`, na.rm=TRUE)), linetype="dashed", size=1)+
+  geom_vline(aes(xintercept=mean(`Measure Value`, na.rm=TRUE)), linetype="dashed", size=1)+
   scale_x_log10(limits = c(0.5, 150))+
   labs(x = 'Log10: Measured Radon (pCi/L)', x = 'Counts', 
        title = 'Measured Radon in Great Pittsburgh',
@@ -119,7 +119,7 @@ ggplot(rad_pgh, aes(x = `Measure.Value`)) +
 ## adding stats and annotate
 # PGH
 
-ggplot(rad_pgh, aes(x = `Measure.Value`)) +
+ggplot(rad_pgh, aes(x = `Measure Value`)) +
   geom_histogram(bins = 15, fill = 'red', alpha = 0.5) +
   geom_vline(data=pgh_stats, aes(xintercept=mean)) +
   geom_vline(data =pgh_stats, aes(xintercept=median), linetype="dashed") +
@@ -143,18 +143,18 @@ ggsave("radon_pgh.png", height = 5, width = 5)
 ##Excluding outliers from the universe
 
 a <- rad_pgh %>% 
-  filter(`Measure.Value` <= 1000)
+  filter(`Measure Value` <= 1000)
 
 count(a)
 count(rad_pgh)
 
 pgh_stats_2 <- a %>% 
-  summarise(minimum = min(`Measure.Value`, round(2)),
-            median = median(`Measure.Value`, round(2)),
-            mean = mean(`Measure.Value`),
-            maximum = max(`Measure.Value`, round(2)),
-            sd = sd(`Measure.Value`, round(2)),
-            n = length(`Measure.Value`))
+  summarise(minimum = min(`Measure Value`, round(2)),
+            median = median(`Measure Value`, round(2)),
+            mean = mean(`Measure Value`),
+            maximum = max(`Measure Value`, round(2)),
+            sd = sd(`Measure Value`, round(2)),
+            n = length(`Measure Value`))
 
 pgh_stats_2$n
 N <- format(pgh_stats_2$n, big.mark = ",")
@@ -166,7 +166,7 @@ round(pgh_stats_2[5],1)
 # N <- format(550395, big.mark=",")
 # N <- format(round(pgh_stats_2[6]), big.mark = ",")
 
-ggplot(a, aes(x = `Measure.Value`)) +
+ggplot(a, aes(x = `Measure Value`)) +
   geom_histogram(bins = 15, fill = 'red', alpha = 0.5) +
   geom_vline(data=pgh_stats_2, aes(xintercept=mean)) +
   geom_vline(data =pgh_stats_2, aes(xintercept=median), linetype="dashed") +
@@ -189,24 +189,24 @@ ggplot(a, aes(x = `Measure.Value`)) +
 ggsave("radon_pgh_norm.png", height = 5, width = 5)
 
 clean_radon_data <- rad_pgh %>%
-  mutate(z_score = (`Measure.Value` - mean(`Measure.Value`, na.rm = TRUE)) / sd(`Measure.Value`, na.rm = TRUE)) %>%
+  mutate(z_score = (`Measure Value` - mean(`Measure Value`, na.rm = TRUE)) / sd(`Measure Value`, na.rm = TRUE)) %>%
   filter(abs(z_score) <= 3) 
 clean_radon_data %>% 
-  slice_max(`Measure.Value`)
+  slice_max(`Measure Value`)
 
 pgh_stats_3 <- clean_radon_data %>% 
-  summarise(minimum = min(`Measure.Value`, round(2)),
-            median = median(`Measure.Value`, round(2)),
-            mean = mean(`Measure.Value`),
-            maximum = max(`Measure.Value`, round(2)),
-            sd = sd(`Measure.Value`, round(2)),
-            n = length(`Measure.Value`))
+  summarise(minimum = min(`Measure Value`, round(2)),
+            median = median(`Measure Value`, round(2)),
+            mean = mean(`Measure Value`),
+            maximum = max(`Measure Value`, round(2)),
+            sd = sd(`Measure Value`, round(2)),
+            n = length(`Measure Value`))
 
 round(pgh_stats_3[5],1)
 (round(pgh_stats_3[5],1)*2 + round(pgh_stats_2[3],1))
 N <- format(pgh_stats_3$n, big.mark=",")
 
-ggplot(clean_radon_data, aes(x = `Measure.Value`)) +
+ggplot(clean_radon_data, aes(x = `Measure Value`)) +
   geom_histogram(bins = 16, fill = 'red', alpha = 0.5) +
   # geom_histogram(bins = 15, fill = 'red', alpha = 0.5) +
   geom_vline(data=pgh_stats_3, aes(xintercept=mean)) +
