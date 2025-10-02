@@ -6,6 +6,21 @@ setwd("/Users/takayukitamura/Documents/R_Computing/radon_data")
 
 crm_data <- read_csv("crm_2025-09-10.csv")
 
+head(crm_data)
+tail(crm_data)
+
+updates <- 
+  tribble(~date, ~value,
+        "2025-09-07", 3.2,
+        "2025-09-10", 4.1,
+        "2025-09-12", 1.7,
+        "2025-09-15", 1.2)
+
+crm_data <- rbind(crm_data, updates) %>% 
+  arrange(desc(date))
+
+write_csv(crm_data, "crm_data.scv")
+
 table <- crm_data %>% 
   summarise(n = length(value), min = min(value), mean = mean(value), median = median(value),sd = sd(value), 
             "mean + sd" = mean+sd, "mean+2sd" = mean + sd*2, max = max(value))
