@@ -4,7 +4,7 @@ library(ggtext)
 
 setwd("/Users/takayukitamura/Documents/R_Computing/radon_data")
 
-crm_data <- read_csv("crm_2025-09-10.csv")
+crm_data <- read_csv("crm_data.csv")
 
 head(crm_data)
 tail(crm_data)
@@ -14,12 +14,16 @@ updates <-
         "2025-09-07", 3.2,
         "2025-09-10", 4.1,
         "2025-09-12", 1.7,
-        "2025-09-15", 1.2)
+        "2025-09-15", 1.2,
+        "2025-09-30", 1.0,
+        "2025-09-30", 0.5,
+        "2025-10-03", 1.2
+        )
 
 crm_data <- rbind(crm_data, updates) %>% 
   arrange(desc(date))
 
-write_csv(crm_data, "crm_data.scv")
+write_csv(crm_data, "crm_data.csv")
 
 table <- crm_data %>% 
   summarise(n = length(value), min = min(value), mean = mean(value), median = median(value),sd = sd(value), 
