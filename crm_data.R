@@ -11,7 +11,7 @@ tail(crm_data)
 
 updates <- 
   tribble(~date, ~value,
-        "2025-10-29", 1.7
+        "2025-11-01", 6.6
         )
 
 crm_data <- rbind(crm_data, updates) %>% 
