@@ -13,7 +13,8 @@ tail(crm_data)
 
 updates <- 
   tribble(~date, ~value,
-        "2026-03-17", 2.1 
+        "2026-03-20", 5.2,
+        "2026-03-21", 6.2
         )
 
 crm_data <- rbind(crm_data, updates) %>% 
@@ -67,7 +68,7 @@ crm_data %>%
   scale_y_continuous(breaks = seq(0, 100, 25),
                      labels = c("0", "25.0", "50.0", "75.0", "100.0")) +
   labs(title = "Radon test results in Pittsburgh",
-       subtitle = "c.5% of homes have 20pCi/L or higher radon level, 36 out of 1,000 people may develop lung cancers over time",
+       subtitle = "c.2.3% of homes have 20pCi/L or higher radon level, 36 out of 1,000 people may develop lung cancers over time",
        y = "Radon level (pCi/L)",
        x = NULL,
        caption = "by T.Tamura") +
