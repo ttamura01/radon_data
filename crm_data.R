@@ -6,14 +6,16 @@ setwd("/Users/takayukitamura/Documents/R_Computing/radon_data")
 
 crm_data <- read_csv("crm_data.csv")
 
-# crm_data <- crm_data[-c(4),]
+crm_data <- crm_data[-c(83),]
 
 head(crm_data)
 tail(crm_data)
 
 updates <- 
   tribble(~date, ~value,
-          "2026-03-29", 1.4
+          "2026-04-05", 0.8,
+          "2026-04-07", 0.6,
+          "2026-04-08", 1.8
         )
 
 crm_data <- rbind(crm_data, updates) %>% 
